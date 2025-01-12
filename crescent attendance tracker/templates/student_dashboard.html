@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Student Dashboard</h1>
+<h2>Attendance Records</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Attended</th>
+            <th>Missed</th>
+            <th>Attendance %</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.subject.name }}</td>
+            <td>{{ record.attended_classes }}</td>
+            <td>{{ record.missed_classes }}</td>
+            <td>
+                {{ (record.attended_classes / (record.attended_classes + record.missed_classes) * 100) if (record.attended_classes + record.missed_classes) > 0 else 0 }}%
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

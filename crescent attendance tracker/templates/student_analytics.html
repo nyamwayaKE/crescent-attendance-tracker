@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Your Attendance Analytics</h1>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Attended Classes</th>
+        <th>Missed Classes</th>
+        <th>Attendance Percentage</th>
+    </tr>
+    {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.subject.name }}</td>
+            <td>{{ record.attended_classes }}</td>
+            <td>{{ record.missed_classes }}</td>
+            <td>
+                {{ (record.attended_classes / (record.attended_classes + record.missed_classes) * 100) if (record.attended_classes + record.missed_classes) > 0 else 0 }}%
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

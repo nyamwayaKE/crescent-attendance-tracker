@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Mark Attendance</h1>
+<form method="POST">
+    <label for="user_id">Select Student:</label>
+    <select name="user_id">
+        {% for student in students %}
+            <option value="{{ student.id }}">{{ student.username }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="subject_id">Select Subject:</label>
+    <select name="subject_id">
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="status">Attendance:</label>
+    <select name="status">
+        <option value="present">Present</option>
+        <option value="absent">Absent</option>
+    </select>
+    <br>
+    <button type="submit">Mark Attendance</button>
+</form>
+{% endblock %}
